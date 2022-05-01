@@ -1,4 +1,5 @@
 import { RootState } from "app/store";
+import { REPO } from "app/types/repo";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = "https://api.github.com";
@@ -15,7 +16,7 @@ export const repoApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPublicRepos: builder.query<string, any>({
+    getPublicRepos: builder.query<[REPO], any>({
       query: (url) => `${url}?per_page=20`,
     }),
   }),

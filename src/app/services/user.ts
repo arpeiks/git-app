@@ -1,4 +1,5 @@
 import { RootState } from "app/store";
+import { USER } from "app/types/user";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = "https://api.github.com";
@@ -15,7 +16,7 @@ export const userApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getUser: builder.query<any, null>({
+    getUser: builder.query<USER, null>({
       query: () => `user`,
     }),
   }),
