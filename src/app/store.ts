@@ -1,15 +1,22 @@
 import { authApi } from "./services/auth";
+import { userApi } from "./services/user";
+import { repoApi } from "./services/repo";
 import { configureStore } from "@reduxjs/toolkit";
 import AuthReducer from "app/features/auth/auth.slice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { PERSIST, persistStore, REGISTER } from "redux-persist";
 
 export const store = configureStore({
-  reducer: { auth: AuthReducer, [authApi.reducerPath]: authApi.reducer },
+  reducer: {
+    auth: AuthReducer,
+    [authApi.reducerPath]: authApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
+    [repoApi.reducerPath]: repoApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: { ignoredActions: [PERSIST, REGISTER] },
-    }).concat(authApi.middleware),
+    }).concat([authApi.middleware, userApi.middleware, repoApi.middleware]),
 });
 
 setupListeners(store.dispatch);

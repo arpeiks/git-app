@@ -27,8 +27,7 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@utils/*": ["./utils/*"],
-      "@icons/*": ["./icons/*"],
-      "@layouts/*": ["./layouts/*"],
+      "@typings/*": ["./typings/*"],
       "@components/*": ["./components/*"]
     }
   },

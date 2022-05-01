@@ -1,20 +1,35 @@
 import React from "react";
+import Loader from "@components/loader";
 import { useRouter } from "next/router";
+import { useAppDispatch } from "app/hooks";
+import AuthLayout from "@components/auth.route";
 import { useGetAccessTokenQuery } from "app/services/auth";
+import { updateToken } from "app/features/auth/auth.slice";
 
 const Auth = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const code: string | undefined = router.query.code as string;
-  const { isError, isLoading, isUninitialized: isIdle } = useGetAccessTokenQuery(code, { skip: !Boolean(code) });
 
-  if (isError) return <h1 style={{ color: "red" }}>ERROR</h1>;
-  if (isIdle || isLoading) return <h1 style={{ color: "blue" }}>LOADING</h1>;
+  const {
+    data,
+    isError,
+    isLoading,
+    isSuccess,
+    isUninitialized: isIdle,
+  } = useGetAccessTokenQuery(code, { skip: !Boolean(code) });
 
-  return (
-    <React.Fragment>
-      <h1>SUCCESS</h1>
-    </React.Fragment>
-  );
+  React.useEffect(() => {
+    const token = data?.access_token;
+    if (token) dispatch(updateToken(token));
+  }, [isSuccess]);
+
+  if (isIdle || isLoading) return <Loader />;
+  if (isError) return <h1 style={{ color: "red" }}>{data?.error || "An error occurred!"}</h1>;
+
+  return router.push("/profile");
 };
+
+Auth.getLayout = (page: React.ReactElement) => <AuthLayout children={page} showOn="public" />;
 
 export default Auth;

@@ -1,14 +1,24 @@
 import "../styles/globals.css";
+import Page from "@components/page";
 import { Provider } from "react-redux";
-import type { AppProps } from "next/app";
+import BaseLoader from "@components/loader";
 import { persistor, store } from "app/store";
+import { AppPropsWithLayout } from "@typings/props";
 import { PersistGate } from "redux-persist/integration/react";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const Loader = (
+  <Page center>
+    <BaseLoader />
+  </Page>
+);
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <Provider store={store}>
-      <PersistGate loading={<h1 style={{ color: "green" }}>LOADING</h1>} persistor={persistor}>
-        <Component {...pageProps} />
+      <PersistGate loading={Loader} persistor={persistor}>
+        {getLayout(<Component {...pageProps} />)}
       </PersistGate>
     </Provider>
   );
