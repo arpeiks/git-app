@@ -1,17 +1,11 @@
-import Page from "./page";
 import React from "react";
-import BaseLoader from "./loader";
+import Loader from "./loader";
+import Appbar from "./appbar";
 import { useRouter } from "next/router";
 import { useAppSelector } from "app/hooks";
 import { useGetUserQuery } from "app/services/user";
 
 type Props = { children: React.ReactElement; showOn?: "public" | "private" };
-
-const Loader = () => (
-  <Page center>
-    <BaseLoader />
-  </Page>
-);
 
 const AuthLayout = ({ children, showOn = "private" }: Props) => {
   const router = useRouter();
@@ -40,16 +34,22 @@ const AuthLayout = ({ children, showOn = "private" }: Props) => {
 
   // private unauth -> redirect login
 
-  // public auth -> redirect dashboard
+  // public auth -> redirect profile
 
   if (isLoading) return <Loader />;
   if (isError) return <h1>ERROR</h1>;
 
   if (redirectToLogin) router.push("/login");
-  if (redirectToProfile) router.push("/profile");
+  if (redirectToProfile) router.push("/repos");
 
   if (showComponent) {
-    return React.cloneElement(children, { user: data });
+    const childrenElement = React.cloneElement(children, { user: data });
+    return (
+      <React.Fragment>
+        <Appbar />
+        {childrenElement}
+      </React.Fragment>
+    );
   }
 
   return <Loader />;

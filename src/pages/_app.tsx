@@ -3,6 +3,7 @@ import Page from "@components/page";
 import { Provider } from "react-redux";
 import BaseLoader from "@components/loader";
 import { persistor, store } from "app/store";
+import { SnackbarProvider } from "notistack";
 import { AppPropsWithLayout } from "@typings/props";
 import { PersistGate } from "redux-persist/integration/react";
 
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <Provider store={store}>
       <PersistGate loading={Loader} persistor={persistor}>
-        {getLayout(<Component {...pageProps} />)}
+        <SnackbarProvider maxSnack={1} anchorOrigin={{ vertical: "bottom", horizontal: "center" }}>
+          {getLayout(<Component {...pageProps} />)}
+        </SnackbarProvider>
       </PersistGate>
     </Provider>
   );

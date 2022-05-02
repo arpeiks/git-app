@@ -1,23 +1,9 @@
-import Toolbar from "./toolbar";
-import Container from "./container";
 import { styled } from "@utils/styled";
 
-type Props = { children?: React.ReactNode };
-
-const Root = styled("header", {
+const Appbar = styled("header", {
   width: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "space-between",
-  borderBottom: "1px solid #e3e3e3",
+  height: "86px",
+  backgroundColor: "#24292f",
 });
-
-const Appbar = ({ children }: Props) => (
-  <Root>
-    <Toolbar>
-      <Container>{children}</Container>{" "}
-    </Toolbar>
-  </Root>
-);
 
 export default Appbar;

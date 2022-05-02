@@ -13,14 +13,8 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
-          />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Roboto+Condensed:wght@400;700&display=swap"
-          />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap" />
         </Head>
         <body>
           <Main />
