@@ -13,6 +13,7 @@ const Button = styled("button", {
   position: "relative",
   alignItems: "center",
   padding: "1rem 2rem",
+  fontFamily: "Roboto",
   justifyContent: "center",
   backgroundColor: "black",
   textTransform: "uppercase",
