@@ -1,6 +1,8 @@
 import { styled } from "@utils/styled";
+import stringToColour from "@utils/string.color";
+import CircleLoader from "@components/loader.circle";
 
-type Props = { icon?: "dot" | React.ReactNode; name: string; value: string | number };
+type Props = { icon?: "dot" | React.ReactNode; name: string; value?: string | number; isLoadingLanguage?: boolean };
 
 const Root = styled("div", {
   display: "flex",
@@ -13,7 +15,6 @@ const Dot = styled("span", {
   height: "8px",
   display: "block",
   borderRadius: "50%",
-  backgroundColor: "blue",
 });
 
 const Value = styled("span", {
@@ -22,10 +23,30 @@ const Value = styled("span", {
   color: "rgb(0 0 0 / 54%)",
 });
 
-const Meta = ({ icon, value }: Props) => {
+const Icon = styled("div", {
+  width: "18px",
+  height: "18px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+const Meta = ({ icon, value, isLoadingLanguage }: Props) => {
+  let color: string | undefined = undefined;
+  if (value === null || value === undefined) return null;
+  if (icon === "dot") color = stringToColour(String(value));
+
+  if (isLoadingLanguage) {
+    return (
+      <Icon>
+        <CircleLoader />
+      </Icon>
+    );
+  }
+
   return (
     <Root>
-      {icon === "dot" ? <Dot /> : icon}
+      {icon === "dot" ? <Dot style={{ backgroundColor: color }} /> : icon}
       <Value>{value}</Value>
     </Root>
   );

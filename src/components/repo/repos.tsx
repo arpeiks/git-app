@@ -2,7 +2,7 @@ import React from "react";
 import Repo from "./repo";
 import { REPO } from "app/types/repo";
 
-type Props = { repos?: [REPO] };
+type Props = { repos?: REPO[] };
 
 const Repos = ({ repos }: Props) => {
   return (

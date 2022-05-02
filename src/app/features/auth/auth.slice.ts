@@ -1,7 +1,7 @@
 import { RootState } from "app/store";
 import { persistReducer } from "redux-persist";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type AuthState = { token: string };
 

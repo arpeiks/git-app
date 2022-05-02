@@ -16,10 +16,13 @@ export const repoApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPublicRepos: builder.query<[REPO], any>({
+    getPublicRepos: builder.query<[REPO], string>({
       query: (url) => `${url}?per_page=20`,
+    }),
+    getRepoLanguages: builder.query<Record<string, number>, string>({
+      query: (url) => url,
     }),
   }),
 });
 
-export const { useGetPublicReposQuery } = repoApi;
+export const { useGetPublicReposQuery, useGetRepoLanguagesQuery } = repoApi;
