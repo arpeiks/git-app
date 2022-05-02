@@ -1,13 +1,10 @@
 import { REPO } from "app/types/repo";
 import { RootState } from "app/store";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type RepoState = { repos: REPO[] | [] };
 
 const initialState: RepoState = { repos: [] };
-const persistOptions = { storage, key: "rtk:repos", whitelist: ["repos"] };
 
 export const RepoSlice = createSlice({
   name: "repo",
@@ -23,6 +20,6 @@ export const RepoSlice = createSlice({
   },
 });
 
+export default RepoSlice.reducer;
 export const getRepos = (state: RootState) => state.repo.repos;
-export default persistReducer(persistOptions, RepoSlice.reducer);
 export const { setRepos, updateRepoLanguage } = RepoSlice.actions;

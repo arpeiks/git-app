@@ -6,7 +6,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type AuthState = { token: string };
 
 const initialState: AuthState = { token: "" };
-const persistOptions = { storage, key: "rtk:auth", whitelist: ["token"] };
+const persistOptions = { storage, key: "gitapp:auth", whitelist: ["token"] };
 
 export const AuthSlice = createSlice({
   name: "auth",
