@@ -57,7 +57,7 @@ const Repo = ({ repo }: Props) => {
   React.useEffect(() => {
     const language = languages ? Object.keys(languages)[0] : null;
     if (language) dispatch(updateRepoLanguage({ id: repo.id, value: language }));
-  }, [fulfilledTimeStamp]);
+  }, [repo.id, languages, dispatch, fulfilledTimeStamp]);
 
   if (languages && Boolean(fulfilledTimeStamp)) language = Object.keys(languages)[0];
 

@@ -29,7 +29,7 @@ const Auth = () => {
       enqueueSnackbar("An error occurred", { persist: true, variant: "error" });
       router.push("/login");
     }
-  }, [data, fulfilledTimeStamp]);
+  }, [data, router, dispatch, closeSnackbar, enqueueSnackbar, fulfilledTimeStamp]);
 
   return <Loader />;
 };

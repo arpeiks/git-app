@@ -38,7 +38,7 @@ const Repository = ({ user }: Props) => {
 
   const initialState = repos.length ? repos : null;
   const [filtered, setFiltered] = React.useState<null | REPO[]>(initialState);
-  const { data, isLoading, isSuccess } = useGetPublicReposQuery(user?.repos_url);
+  const { data, isLoading } = useGetPublicReposQuery(user?.repos_url);
 
   const handleChange = (e: any) => {
     const value = e.target.value.toLowerCase();
@@ -58,7 +58,7 @@ const Repository = ({ user }: Props) => {
 
   React.useEffect(() => {
     if (data?.length) dispatch(setRepos(data));
-  }, [isSuccess]);
+  }, [data, dispatch]);
 
   if (isLoading) return <Loader />;
 
