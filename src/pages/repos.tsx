@@ -88,6 +88,8 @@ const Repository = ({ user }: Props) => {
   );
 };
 
-Repository.getLayout = (page: React.ReactElement) => <AuthLayout children={page} showOn="private" />;
+Repository.getLayout = (page: React.ReactElement) => (
+  <AuthLayout title="gitapp | repos" children={page} showOn="private" />
+);
 
 export default Repository;

@@ -1,13 +1,14 @@
 import React from "react";
+import Head from "next/head";
 import Loader from "./loader";
 import Appbar from "./appbar";
 import { useRouter } from "next/router";
 import { useAppSelector } from "app/hooks";
 import { useGetUserQuery } from "app/services/user";
 
-type Props = { children: React.ReactElement; showOn?: "public" | "private" };
+type Props = { title: string; children: React.ReactElement; showOn?: "public" | "private" };
 
-const AuthLayout = ({ children, showOn = "private" }: Props) => {
+const AuthLayout = ({ title, children, showOn = "private" }: Props) => {
   const router = useRouter();
   const token = useAppSelector((state) => state.auth.token);
 
@@ -46,6 +47,9 @@ const AuthLayout = ({ children, showOn = "private" }: Props) => {
     const childrenElement = React.cloneElement(children, { user: data });
     return (
       <React.Fragment>
+        <Head>
+          <title>{title || "arpeiks gitapp"}</title>
+        </Head>
         <Appbar />
         {childrenElement}
       </React.Fragment>

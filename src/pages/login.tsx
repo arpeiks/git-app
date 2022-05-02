@@ -11,6 +11,6 @@ const Login = () => {
   );
 };
 
-Login.getLayout = (page: React.ReactElement) => <AuthLayout children={page} showOn="public" />;
+Login.getLayout = (page: React.ReactElement) => <AuthLayout title="gitapp | Login" children={page} showOn="public" />;
 
 export default Login;

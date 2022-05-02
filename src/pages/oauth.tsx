@@ -34,6 +34,6 @@ const Auth = () => {
   return <Loader />;
 };
 
-Auth.getLayout = (page: React.ReactElement) => <AuthLayout children={page} showOn="public" />;
+Auth.getLayout = (page: React.ReactElement) => <AuthLayout title="gitapp | oauth" children={page} showOn="public" />;
 
 export default Auth;
