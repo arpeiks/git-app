@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "https://git-app-auth.herokuapp.com";
+const baseUrl = "https://git-auth.onrender.com";
 
 export const authApi = createApi({
   reducerPath: "authApi",
